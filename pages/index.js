@@ -10,7 +10,14 @@ import { CMS_NAME } from "../lib/constants";
 export default function Index({ allPosts: { edges }, preview }) {
   const heroPost = edges[0]?.node;
   const morePosts = edges.slice(1);
-
+  useEffect(() => {
+    var ads = document.getElementsByClassName("adsbygoogle").length;
+    for (var i = 0; i < ads; i++) {
+      try {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {}
+    }
+  }, []);
   return (
     <>
       <Layout preview={preview}>
@@ -31,11 +38,6 @@ export default function Index({ allPosts: { edges }, preview }) {
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
           <div>hello</div>
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9539184273156609"
-            crossorigin="anonymous"
-          ></script>
           <ins
             class="adsbygoogle"
             style={{ display: "block", textAlign: "center" }}
@@ -44,7 +46,6 @@ export default function Index({ allPosts: { edges }, preview }) {
             data-ad-client="ca-pub-9539184273156609"
             data-ad-slot="8786458990"
           ></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
           <div>add sandwith</div>
         </Container>
       </Layout>
